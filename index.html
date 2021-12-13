@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/font-awesome.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/app.js" type="module" defer></script>
+    <title>Homework #10</title>
+</head>
+<body>
+    <div class="container" id="app" v-cloak>
+
+        <h1 class="mt-3">{{title}}</h1>
+
+        <div class="mx-auto text-center mt-3">
+            <h5 v-if='showCounter'>
+                <i class="fas fa-shopping-cart"></i>
+                <span> ({{showCounter}})</span>
+                <span> Price: {{showPrice}} $</span>
+            </h5>
+        </div>
+
+        <div class='text-right d-flex'>
+            <input v-model='search' id='search' class='me-auto' type="text" placeholder="Search...">
+
+            <span class='mx-4 d-flex align-items-center'>
+                <label for='sort-up'>Price Up</label>
+                <input v-model='sort' id='sort-up' class='mx-2' type="radio" value='up' name='sort'>
+            </span>
+
+            <span class='mx-4 d-flex align-items-center'>
+                <label for='sort-down'>Price Down</label>
+                <input v-model='sort' id='sort-down' class='mx-2' type="radio" value='down' name='sort'>
+            </span>
+        </div>
+
+        <div class="row row-cols-md-5 mt-5">
+            <div v-for='item in showList' class="card m-2 mt-3 p-2">
+                <img :src="item.image" class="mx-auto mb-1" :title="item.title">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{item.title}}</h5>
+                    <p class="card-text descript">{{item.description}}</p>
+                    <h4 class="text-end">{{item.price}}$</h4>
+                    <input v-model='item.counter' class="w-100 text-center" type="number" value="0" min="0" onkeypress="return false" />
+                    
+                </div>
+            </div>
+        </div>
+    
+    
+    </div>
+    <div id="loader" class="text-center my-5">
+        <i class="fas fa-spinner fa-3x fa-spin"></i>
+    </div>
+ 
+</body>
+</html>
