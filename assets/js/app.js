@@ -2,9 +2,9 @@ const URL = 'https://fakestoreapi.com/products';
 
 import { createApp } from "../../node_modules/vue/dist/vue.esm-browser.prod.js";
 
-//import { stuffCard } from "./stuffCard.js"; 
+import { stuffCard } from "./components/stuffCard.js"; 
 
-//import { stuffBasket } from "./stuffBasket.js"
+import { stuffBasket } from "./components/stuffBasket.js"
 
 setTimeout(function(){
     createApp({
@@ -15,6 +15,10 @@ setTimeout(function(){
                 search: '',
                 sort: null
             }
+        },
+        components: {
+            stuffBasket,
+            stuffCard
         },
         computed: {
             showList(){ 
@@ -35,28 +39,7 @@ setTimeout(function(){
                     }
                 }
                 return resultList;    
-            },
-            showCounter(){
-                let counterS = 0;
-                for(let item of this.storeList){
-                    counterS += item.counter
-                }
-                return counterS
-            },
-            showPrice(){
-                let arr = [];
-                let sum = 0;
-                for(let item of this.storeList) {
-                    if(item.counter !== 0) {
-                        arr.push(item.price * item.counter)
-                    }    
-                }
-                for (let i = 0; i < arr.length; i++){
-                    sum += arr[i];
-                }
-                return sum.toFixed(2) 
             }
-        
         },
         async mounted(){
             let data = await fetch(URL);
