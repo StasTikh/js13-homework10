@@ -14,6 +14,12 @@ setTimeout(function(){
                 storeList: [],
                 search: '',
                 sort: null
+                
+            }
+        },
+        methods:{
+            onMyEvent(counter, key){
+                this.showList[key].counter = counter;
             }
         },
         components: {
